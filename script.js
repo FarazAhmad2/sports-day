@@ -78,10 +78,19 @@ function HighJump(AwardCeremony, scores) {
 function AwardCeremony(scores) {
   let sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
   const position = ["first", "second", "third", "fourth"];
+  let currentPosition = 0; // Track current position
+
+  // Iterate over sorted scores
   for (let i = 0; i < sortedScores.length; i++) {
+    // Output color with the current position
     console.log(
-      `${sortedScores[i][0]} came ${position[i]} with ${sortedScores[i][1]} points.`
+      `${sortedScores[i][0]} came ${position[currentPosition]} with ${sortedScores[i][1]} points.`
     );
+
+    // Increment current position only if the next score is different
+    if (i < sortedScores.length - 1 && sortedScores[i][1] !== sortedScores[i + 1][1]) {
+      currentPosition++;
+    }
   }
 }
 
